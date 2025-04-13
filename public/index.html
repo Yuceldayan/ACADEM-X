@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academix - Yeni Nesil Akademik Platformu</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- AOS (Animasyon Kütüphanesi) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome 6 (ikonlar) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg-dark: #0a192f;
+      /* Derin lacivert arka plan */
+      --accent: #64ffda;
+      /* Turkuaz-mint geçişli vurgu */
+      --text-primary: #ccd6f6;
+      /* Açık gri metin */
+      --text-secondary: #8892b0;
+      /* Daha koyu gri metin */
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-primary);
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: transparent !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem 0;
+    }
+
+    .navbar .nav-link {
+      color: var(--text-primary) !important;
+    }
+
+    .navbar .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    /* Neon Border (neo-border) */
+    .neo-border {
+      border: 2px solid var(--accent);
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .neo-border::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(45deg, rgba(100, 255, 218, 0.2), transparent);
+      z-index: -1;
+      animation: borderAnim 10s linear infinite;
+      /* yavaş animasyon */
+    }
+
+    @keyframes borderAnim {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(180deg);
+      }
+    }
+
+    .neo-border:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+    }
+
+    /* Hero Section */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Holographic arka plan (Azaltılmış animasyon) */
+    .holographic-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .holographic-effect::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg,
+          transparent 25%,
+          rgba(100, 255, 218, 0.1) 50%,
+          transparent 75%);
+      animation: hologram 30s infinite linear;
+    }
+
+    @keyframes hologram {
+      0% {
+        transform: rotate(0deg) translate(-25%, -25%);
+      }
+
+      100% {
+        transform: rotate(180deg) translate(-25%, -25%);
+      }
+    }
+
+    /* Feature Cards */
+    .feature-card {
+      background: rgba(100, 255, 218, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      transition: transform 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    /* Gradient Text */
+    .gradient-text {
+      background: linear-gradient(45deg, #64ffda, #00ff88);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Footer */
+    .dynamic-footer {
+      background: linear-gradient(160deg, #020c1b 0%, #0a192f 100%);
+      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+      padding: 4rem 0 2rem;
+    }
+
+    .dynamic-footer .footer-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .dynamic-footer .footer-link:hover {
+      color: var(--accent);
+    }
+
+    /* Sosyal medya ikonlarını beyaz yapalım */
+    .social-links a i {
+      color: #fff !important;
+    }
+
+    /* Soft Hover for "Keşfet" and "Hemen Katıl" buttons */
+    .btn-outline-accent {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-outline-accent:hover {
+      background: var(--accent);
+      color: #0a192f;
+    }
+
+    .btn-join {
+      color: #fff !important;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Hologram Arka Plan (azaltılmış animasyon) -->
+  <div class="holographic-effect"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold gradient-text fs-3" href="#">
+        <i class="fas fa-atom me-2"></i>ACADEMIX
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item mx-2"><a class="nav-link" href="#features">Özellikler</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#community">Topluluk</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#stats">İstatistikler</a></li>
+          <li class="nav-item ms-3">
+            <a href="/login.html" class="btn neo-border btn-join px-4 py-2">
+              <i class="fas fa-rocket me-2"></i>Hemen Katıl
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <!-- Hero Metin -->
+        <div class="col-lg-6" data-aos="fade-right">
+          <h1 class="display-2 fw-bold mb-4">
+            Yeni Nesil <span class="gradient-text">Akademik Platform</span>
+          </h1>
+          <p class="lead mb-5" style="color: var(--text-secondary);">
+            Notlarını PDF olarak yükle, forumda soru sor ve cevapla,
+            ilan yayınlayarak özel ders ver. Akademik başarını artırırken
+            toplulukla etkileşime geçmenin en eğlenceli yolu!
+          </p>
+          <div class="d-flex gap-3">
+            <a href="/register.html" class="btn btn-lg neo-border px-5 py-3 btn-join">
+              Hemen Katıl
+            </a>
+            <a href="#features" class="btn btn-lg btn-outline-accent px-5 py-3">
+              Keşfet
+            </a>
+          </div>
+        </div>
+
+        <!-- Daha Etkileyici Görsel/Metin Kısmı -->
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="position-relative mt-5 mt-lg-0">
+            <div class="neo-border p-4 rounded-4 text-center">
+              <i class="fas fa-file-upload fa-4x gradient-text mb-3"></i>
+              <h3 class="mb-2">PDF Yükleme ve Paylaşma</h3>
+              <p class="text-secondary mb-0">
+                Yüzlerce PDF dokümanını tek tıkla yükle ve arkadaşlarınla paylaş.
+                Beğeni ve yorum sistemiyle etkileşimi artır, en popüler notlar arasına gir!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-5">
+    <div class="container">
+      <div class="text-center mb-5" data-aos="fade-up">
+        <h2 class="display-4 fw-bold mb-3">Öne Çıkan Özellikler</h2>
+        <p class="text-secondary">Akademik dünyayı tek çatı altında buluşturuyoruz</p>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+          <div class="feature-card p-4 h-100">
+            <div class="icon-box mb-4">
+              <i class="fas fa-comments fa-3x gradient-text"></i>
+            </div>
+            <h3 class="mb-3">Forum Sistemi</h3>
+            <p class="text-secondary">
+              Farklı ders ve konularda soru sor, cevap ver. En iyi cevap seçimiyle bilginizi paylaşırken topluluk
+              puanları kazanın.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+          <div class="feature-card p-4 h-100">
+            <div class="icon-box mb-4">
+              <i class="fas fa-file-pdf fa-3x gradient-text"></i>
+            </div>
+            <h3 class="mb-3">PDF Yükleme</h3>
+            <p class="text-secondary">
+              Ders notlarını PDF olarak yükle, beğeni ve yorum sistemiyle popüler notların sahibi ol.
+            </p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+          <div class="feature-card p-4 h-100">
+            <div class="icon-box mb-4">
+              <i class="fas fa-bullhorn fa-3x gradient-text"></i>
+            </div>
+            <h3 class="mb-3">İlan Yayınlama</h3>
+            <p class="text-secondary">
+              Özel ders vermek veya ders koçluğu yapmak mı istiyorsun? İlanını oluştur, öğrencilerle iletişime geç.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section id="community" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- Sol kısım -->
+        <div class="col-md-6" data-aos="fade-right">
+          <h2 class="fw-bold mb-4">Topluluk ile Etkileşim</h2>
+          <p class="text-secondary">
+            Forumlarda soru sor, cevap ver. Ders çalışma gruplarına katıl, özel ders al veya ver.
+            Kendi ilanını oluştur ve akademik kariyerine ek gelir sağla.
+          </p>
+          <ul class="list-unstyled mt-4">
+            <li class="mb-2">
+              <i class="fas fa-check-circle me-2 text-accent"></i>
+              Gerçek zamanlı tartışma forumları
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-check-circle me-2 text-accent"></i>
+              Özel ders ilanları
+            </li>
+            <li class="mb-2">
+              <i class="fas fa-check-circle me-2 text-accent"></i>
+              Beğeni, yorum ve rozet sistemi
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sağ kısım: Yeni Bölüm (Önceden Günün Popüler Paylaşımlarıydı) -->
+        <div class="col-md-6" data-aos="fade-left">
+          <div class="neo-border p-4 rounded-4">
+            <div class="text-center mb-3">
+              <i class="fas fa-trophy fa-2x gradient-text"></i>
+            </div>
+            <h5 class="text-center text-secondary">Akademik Başarı Hikayeleri</h5>
+            <p class="text-secondary mt-3">
+              Kısa sürede büyük ilerleme kaydeden öğrencilerimizden ilham alın.
+              Akademix topluluğunda her gün yeni başarı hikâyeleri yazılıyor!
+            </p>
+            <ul class="list-unstyled mt-3">
+              <li class="d-flex gap-3 mb-3">
+                <div><i class="fas fa-user-graduate gradient-text"></i></div>
+                <div>
+                  <strong>Ayşe (Tıp Fakültesi)</strong><br>
+                  <span class="small">Forum yardımıyla TUS hazırlığında 3 ayda büyük gelişim sağladı.</span>
+                </div>
+              </li>
+              <li class="d-flex gap-3 mb-3">
+                <div><i class="fas fa-user-graduate gradient-text"></i></div>
+                <div>
+                  <strong>Mehmet (Mühendislik)</strong><br>
+                  <span class="small">PDF paylaşım özelliği sayesinde 500+ notu öğrencilerle buluşturdu.</span>
+                </div>
+              </li>
+              <li class="d-flex gap-3">
+                <div><i class="fas fa-user-graduate gradient-text"></i></div>
+                <div>
+                  <strong>Zeynep (Fen Lisesi)</strong><br>
+                  <span class="small">İlan açarak özel ders verdi ve üniversite harçlığı çıkardı.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS (Dinamik) -->
+  <section id="stats" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <h2 class="display-5 fw-bold">İstatistikler</h2>
+        <p class="text-secondary">Platformumuzun güncel verilerine göz atın</p>
+      </div>
+      <div class="row g-4 text-center" id="dynamicStats">
+        <!-- JS ile doldurulacak (aşağıdaki script) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FUTURISTIC FOOTER -->
+  <footer class="dynamic-footer">
+    <div class="container">
+      <div class="row g-5">
+        <div class="col-lg-4">
+          <h3 class="gradient-text mb-4">ACADEMIX</h3>
+          <p class="text-secondary">
+            Akademik dünyayı tek çatı altında buluşturan yeni nesil platform.
+            Ders notlarını paylaş, forumda etkileşime gir, ilan yayınlayarak ek gelir elde et.
+          </p>
+          <div class="social-links mt-4">
+            <!-- Sosyal medya ikonlarının beyaz görünmesi için CSS'te .social-links a i { color: #fff !important; } ekledik. -->
+            <a href="#" class="btn btn-sm neo-border me-2">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#" class="btn btn-sm neo-border me-2">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="btn btn-sm neo-border">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="row g-4">
+            <div class="col-md-4">
+              <h5 class="mb-3">Kaynaklar</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="footer-link">Dokümantasyon</a></li>
+                <li><a href="#" class="footer-link">API</a></li>
+                <li><a href="#" class="footer-link">Gizlilik</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Topluluk</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="footer-link">Forum</a></li>
+                <li><a href="#" class="footer-link">Etkinlikler</a></li>
+                <li><a href="#" class="footer-link">Blog</a></li>
+              </ul>
+            </div>
+            <div class="col-md-4">
+              <h5 class="mb-3">Yasal</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="footer-link">Koşullar</a></li>
+                <li><a href="#" class="footer-link">Lisans</a></li>
+                <li><a href="#" class="footer-link">GDPR</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-5 pt-4 border-top border-accent">
+        <p class="text-secondary mb-0">&copy; 2023 Academix. Tüm hakları saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- AOS Animations -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Font Awesome JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+  <script>
+    // AOS init (Animasyon biraz azaltıldı: 700ms)
+    AOS.init({
+      duration: 700,
+      once: true
+    });
+
+    // Dinamik İstatistikler
+    const stats = [
+      { title: "Aktif Kullanıcı", value: "150K+", icon: "users" },
+      { title: "Paylaşılan PDF", value: "500K+", icon: "file-pdf" },
+      { title: "Forum Mesajı", value: "1M+", icon: "comments" },
+      { title: "Açılan İlan", value: "20K+", icon: "bullhorn" }
+    ];
+
+    const statsContainer = document.getElementById('dynamicStats');
+    if (statsContainer) {
+      stats.forEach((stat, index) => {
+        statsContainer.innerHTML += `
+          <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="${index * 100}">
+            <div class="feature-card p-3 text-center">
+              <i class="fas fa-${stat.icon} fa-2x gradient-text mb-3"></i>
+              <h2 class="gradient-text">${stat.value}</h2>
+              <p class="text-secondary mb-0">${stat.title}</p>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // Smooth Scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        if (this.getAttribute('href') === '#') {
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

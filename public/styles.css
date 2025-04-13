@@ -1,0 +1,207 @@
+/* =======================================
+   styles.css - Yeni Tasarım
+   (Bootstrap 5 uyumlu, holografik arka plan,
+    neon border, minimal conflict)
+======================================= */
+
+/* 1) Renk ve Font Değişkenleri */
+:root {
+  --bg-dark: #0a192f; /* Derin lacivert arka plan */
+  --accent: #64ffda; /* Turkuaz-mint geçişli vurgu */
+  --text-primary: #ccd6f6; /* Açık gri metin */
+  --text-secondary: #8892b0; /* Daha koyu gri metin */
+  --transition-speed: 0.3s; /* Animasyon hızları */
+}
+
+/* 2) Gövde (Body) */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: "Space Grotesk", sans-serif; /* Örnek font */
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Yatay scroll engelle */
+}
+
+/* 3) Navbar (Genel Stil)
+   Not: Navbar, Bootstrap tarafından .navbar-dark vb. ile stilleniyor.
+   Burada sadece ek dokunuşlar yapıyoruz. */
+.navbar {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1rem 0;
+  position: relative;
+  z-index: 9999; /* Navbar en önde kalsın */
+}
+
+/* Navbar linklerinin rengi */
+.navbar .nav-link {
+  color: var(--text-primary) !important;
+  transition: color var(--transition-speed);
+}
+.navbar .nav-link:hover {
+  color: var(--accent) !important;
+}
+
+/* 4) Holografik Arka Plan (Azaltılmış Animasyon)
+   Eğer tüm site boyunca sabit arka plan istiyorsanız,
+   .holographic-effect gibi bir container ekleyebilirsiniz. */
+.holographic-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+.holographic-effect::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 25%,
+    rgba(100, 255, 218, 0.1) 50%,
+    transparent 75%
+  );
+  animation: hologram 30s infinite linear;
+}
+
+/* Hologram Animasyonu */
+@keyframes hologram {
+  0% {
+    transform: rotate(0deg) translate(-25%, -25%);
+  }
+  100% {
+    transform: rotate(180deg) translate(-25%, -25%);
+  }
+}
+
+/* 5) Neon Border (Ör. .neo-border)
+   Daha önceki .neo-border kuralını düzenledik. */
+.neo-border {
+  border: 2px solid var(--accent);
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition-speed) ease;
+}
+.neo-border::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(100, 255, 218, 0.2), transparent);
+  z-index: -1;
+  animation: borderAnim 10s linear infinite;
+}
+@keyframes borderAnim {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(180deg);
+  }
+}
+.neo-border:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 30px rgba(100, 255, 218, 0.2);
+}
+
+/* 6) Özel Butonlar (Accent) */
+.btn-accent {
+  background: var(--accent);
+  color: #0a192f;
+  border: none;
+  font-weight: 600;
+  transition: transform var(--transition-speed) ease;
+  border-radius: 15px;
+}
+.btn-accent:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(100, 255, 218, 0.2);
+}
+
+/* Outline Light - Accent Border */
+.btn-outline-light {
+  border-radius: 15px;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.btn-outline-light:hover {
+  background: var(--accent);
+  color: #0a192f;
+}
+
+/* 7) Kart / Feature Card Stil Örneği */
+.feature-card {
+  background: rgba(100, 255, 218, 0.05);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  transition: transform var(--transition-speed) ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+/* PDF Başlık ve Açıklama */
+.pdf-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.pdf-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* 8) Search Bar */
+.search-bar {
+  background-color: var(--bg-dark);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.search-bar:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.2rem rgba(100, 255, 218, 0.25);
+}
+
+/* 9) Body İç Kısımlar (Margin, Padding) */
+.container,
+.container-fluid {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* 10) Footer
+   (Eğer dynamic-footer vs. kullandıysanız, buraya ekleyebilirsiniz.) */
+.dynamic-footer {
+  background: linear-gradient(160deg, #020c1b 0%, #0a192f 100%);
+  clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
+  padding: 4rem 0 2rem;
+}
+
+/* Footer link */
+.footer-link {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+.footer-link:hover {
+  color: var(--accent);
+}
+
+/* =======================================
+   Gerekirse ek modüller, respons. vs.
+======================================= */
+
+
+

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "1742166263089",
+    "lessonTitle": "fizik",
+    "description": "enerji ve hareket",
+    "price": "saatlık 700 tl",
+    "contact": "05411579145"
+  },
+  {
+    "id": "1742168651320",
+    "lessonTitle": "veri yapıları",
+    "description": "linked konusu hakkında ozel ders verebilirm",
+    "price": "500",
+    "contact": "05411579145"
+  },
+  {
+    "id": "1742186124103",
+    "lessonTitle": "fg",
+    "description": "sfds",
+    "price": "dsfg",
+    "contact": "sdfs"
+  }
+]
+

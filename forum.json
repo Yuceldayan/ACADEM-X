@@ -1,0 +1,28 @@
+{
+  "questions": [
+    {
+      "id": "1742254445491",
+      "title": "veri bilimi",
+      "category": "Programlama",
+      "content": "veri bilimi nedir",
+      "author": "yucel dayan",
+      "timestamp": "2025-03-17T23:34:05.491Z",
+      "answers": [],
+      "votes": 1
+    },
+    {
+      "id": "1742593076189",
+      "title": "ghdsfghs",
+      "category": "Matematik",
+      "content": "fgsdfsdfsd",
+      "author": "yucel dayan",
+      "date": "2025-03-21T21:37:56.190Z"
+    }
+  ],
+  "categories": [
+    "Matematik",
+    "Fizik",
+    "Programlama",
+    "Genel"
+  ]
+}

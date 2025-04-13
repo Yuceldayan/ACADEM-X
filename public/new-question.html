@@ -1,0 +1,36 @@
+<!-- new-question.html içinde -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Yeni Soru Sor - Öğrenci Forumu</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Yeni Soru Sor</h1>
+  <form action="/forum" method="POST">
+    <div>
+      <label for="title">Soru Başlığı</label>
+      <input type="text" id="title" name="title" required>
+    </div>
+    <div>
+      <label for="content">Soru Detayı</label>
+      <textarea id="content" name="content" rows="5" required></textarea>
+    </div>
+    <div>
+      <label for="category">Kategori</label>
+      <select id="category" name="category" required>
+        <option value="Matematik">Matematik</option>
+        <option value="Fizik">Fizik</option>
+        <option value="Programlama">Programlama</option>
+        <option value="Genel">Genel</option>
+      </select>
+    </div>
+    <div>
+      <label for="author">Adınız</label>
+      <input type="text" id="author" name="author" required>
+    </div>
+    <button type="submit">Soruyu Gönder</button>
+  </form>
+</body>
+</html>
